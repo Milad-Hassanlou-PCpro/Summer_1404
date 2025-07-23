@@ -14,18 +14,23 @@ int main()
         printf("5-Print Last %d History\n", STORAGE_CAPACITY);
         printf("6-Exit\n");
         scanf("%d", &chose_operator);
-    back:
+
         if (1 <= chose_operator && chose_operator <= 4)
         {
-            printf("Please Input Tow Numbers:\n");
-            scanf("%d %d", &a, &b);
-            if (a < 0 || b < 0)
+            while (1)
             {
-                printf("Numbers must not be Negative!\n");
-                goto back;
+                printf("Please Input Tow Numbers:\n");
+                scanf("%d %d", &a, &b);
+                if (a < 0 || b < 0)
+                {
+                    printf("Numbers must not be Negative!\n");
+                }
+                else
+                {
+                    break;
+                }
             }
         }
-
         switch (chose_operator)
         {
         case 1:
@@ -44,6 +49,7 @@ int main()
             printHistory();
             break;
         case 6:
+            printf("GoodBye!\n");
             return 0;
         default:
             printf("Invalid Choise!\n");
@@ -51,7 +57,7 @@ int main()
 
         if (1 <= chose_operator && chose_operator <= 4)
         {
-            printf("Result:%.2f\n", result);
+            printf("----->Result:%.2f\n", result);
         }
     }
 }
