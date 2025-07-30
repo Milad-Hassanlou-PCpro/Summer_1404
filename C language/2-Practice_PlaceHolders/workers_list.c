@@ -13,9 +13,9 @@ typedef struct
 void addWorker(employee *workers, int *count, int *Id);
 void menu(employee *workers, int *count, int *Id);
 void searchMenu(employee *workers, int count);
-void deletWorker(employee *workers, int *count);
+void deleteWorker(employee *workers, int *count);
 int searchById(employee *workers, int count);
-employee *searchByName(employee *workers, int count);
+employee searchByName(employee *workers, int count);
 
 int main()
 {
@@ -48,7 +48,7 @@ void menu(employee *workers, int *count, int *Id)
             addWorker(workers, count, Id);
             break;
         case 2:
-            deletWorker(workers, count);
+            deleteWorker(workers, count);
             break;
         case 3:
             searchMenu(workers, (*count));
@@ -75,10 +75,10 @@ void searchMenu(employee *workers, int count)
     switch (choose)
     {
     case 1:
-        employee *result = searchByName(workers, count);
-        if (result != NULL)
+        employee result = searchByName(workers, count);
+        if (result.id != -1)
         {
-            printf("Name: %s, Id: %d ,Age: %d\n", result->name, result->id, result->age);
+            printf("Name: %s, Id: %d ,Age: %d\n", result.name, result.id, result.age);
         }
         else
         {
@@ -121,7 +121,7 @@ void addWorker(employee *workers, int *count, int *Id)
     return;
 }
 
-void deletWorker(employee *workers, int *count)
+void deleteWorker(employee *workers, int *count)
 {
     int indexResult = 0;
     if ((indexResult = searchById(workers, (*count))) != -1)
@@ -157,7 +157,7 @@ int searchById(employee *workers, int count)
     return -1;
 }
 
-employee *searchByName(employee *workers, int count)
+employee searchByName(employee *workers, int count)
 {
     char targetName[20];
     printf("Name:");
@@ -166,8 +166,9 @@ employee *searchByName(employee *workers, int count)
     {
         if (_stricmp((workers + i)->name, targetName) == 0)
         {
-            return workers + i;
+            return *(workers+i);
         }
     }
-    return NULL;
+    employee notFound ={-1,"notFound",0};
+    return notFound;
 }
