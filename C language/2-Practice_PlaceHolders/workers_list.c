@@ -16,6 +16,8 @@ void searchMenu(employee *workers, int count);
 void deleteWorker(employee *workers, int *count);
 int searchById(employee *workers, int count);
 employee searchByName(employee *workers, int count);
+void showAllWorkers(employee *workers, int count);
+
 
 int main()
 {
@@ -37,8 +39,6 @@ void menu(employee *workers, int *count, int *Id)
         printf("3-Search Worker\n");
         printf("4-Show All Workers\n");
         printf("5-exit\n");
-        printf("6-\n");
-        printf("7-\n");
         printf("Please Input a Number:");
         scanf("%d", &choose);
 
@@ -54,6 +54,7 @@ void menu(employee *workers, int *count, int *Id)
             searchMenu(workers, (*count));
             break;
         case 4:
+            showAllWorkers(workers,(*count));
             break;
         case 5:
             return;
@@ -87,13 +88,13 @@ void searchMenu(employee *workers, int count)
         break;
     case 2:
         int targetId = searchById(workers, count);
-        if(targetId!=-1)
+        if (targetId != -1)
         {
-        printf("Name: %s, Id: %d, Age: %d\n", (workers + targetId)->name, (workers + targetId)->id, (workers + targetId)->age);
+            printf("Name: %s, Id: %d, Age: %d\n", (workers + targetId)->name, (workers + targetId)->id, (workers + targetId)->age);
         }
         else
         {
-           printf("Worker with this Id is not found!\n"); 
+            printf("Worker with this Id is not found!\n");
         }
         break;
     default:
@@ -106,7 +107,7 @@ void addWorker(employee *workers, int *count, int *Id)
     if (*count < MAX_EMPLOYEES)
     {
         printf("Name:");
-        scanf("%s", (workers + (*count))->name);
+        scanf("%s",(workers + (*count))->name);
         printf("Age:");
         scanf("%d", &(workers + (*count))->age);
         (workers + (*count))->id = (*Id);
@@ -133,7 +134,7 @@ void deleteWorker(employee *workers, int *count)
             workers[j] = workers[j + 1];
         }
         (*count)--;
-        printf("Deleting complited!\n");
+        printf("Deleting completed!\n");
     }
     else
     {
@@ -166,9 +167,19 @@ employee searchByName(employee *workers, int count)
     {
         if (_stricmp((workers + i)->name, targetName) == 0)
         {
-            return *(workers+i);
+            return *(workers + i);
         }
     }
-    employee notFound ={-1,"notFound",0};
+    employee notFound = {-1, "notFound", 0};
     return notFound;
+}
+
+void showAllWorkers(employee *workers, int count)
+{
+    printf("All workers in list:\n");
+    for (int i = 0; i < count; i++)
+    {
+        printf("%d-Id: %d, Name: %s, Age: %d\n", i+1,(workers+i)->id,(workers+i)->name,(workers+i)->age);
+    }
+    return;
 }
