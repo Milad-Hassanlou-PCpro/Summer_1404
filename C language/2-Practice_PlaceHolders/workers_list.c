@@ -8,27 +8,27 @@ typedef struct
     int id;
     char name[20];
     int age;
-} employee;
+} Employee;
 
-void addWorker(employee *workers, int *count, int *Id);
-void menu(employee *workers, int *count, int *Id);
-void searchMenu(employee *workers, int count);
-void deleteWorker(employee *workers, int *count);
-int searchById(employee *workers, int count);
-employee searchByName(employee *workers, int count);
-void showAllWorkers(employee *workers, int count);
+void addWorker(Employee *workers, int *count, int *Id);
+void menu(Employee *workers, int *count, int *Id);
+void searchMenu(Employee *workers, int count);
+void deleteWorker(Employee *workers, int *count);
+int searchById(Employee *workers, int count);
+Employee searchByName(Employee *workers, int count);
+void showAllWorkers(Employee *workers, int count);
 
 
 int main()
 {
-    employee workers[MAX_EMPLOYEES];
+    Employee workers[MAX_EMPLOYEES];
     int counter = 0;
     int baseId = 404001;
     menu(workers, &counter, &baseId);
     return 0;
 }
 
-void menu(employee *workers, int *count, int *Id)
+void menu(Employee *workers, int *count, int *Id)
 {
     while (1)
     {
@@ -65,7 +65,7 @@ void menu(employee *workers, int *count, int *Id)
     }
 }
 
-void searchMenu(employee *workers, int count)
+void searchMenu(Employee *workers, int count)
 {
     int choose = 0;
     printf("Please chose the type of search:\n");
@@ -76,7 +76,7 @@ void searchMenu(employee *workers, int count)
     switch (choose)
     {
     case 1:
-        employee result = searchByName(workers, count);
+        Employee result = searchByName(workers, count);
         if (result.id != -1)
         {
             printf("Name: %s, Id: %d ,Age: %d\n", result.name, result.id, result.age);
@@ -102,7 +102,7 @@ void searchMenu(employee *workers, int count)
     }
 }
 
-void addWorker(employee *workers, int *count, int *Id)
+void addWorker(Employee *workers, int *count, int *Id)
 {
     if (*count < MAX_EMPLOYEES)
     {
@@ -122,7 +122,7 @@ void addWorker(employee *workers, int *count, int *Id)
     return;
 }
 
-void deleteWorker(employee *workers, int *count)
+void deleteWorker(Employee *workers, int *count)
 {
     int indexResult = 0;
     if ((indexResult = searchById(workers, (*count))) != -1)
@@ -143,7 +143,7 @@ void deleteWorker(employee *workers, int *count)
     return;
 }
 
-int searchById(employee *workers, int count)
+int searchById(Employee *workers, int count)
 {
     int targetId = 0;
     printf("Please input the Id of the worker:");
@@ -158,7 +158,7 @@ int searchById(employee *workers, int count)
     return -1;
 }
 
-employee searchByName(employee *workers, int count)
+Employee searchByName(Employee *workers, int count)
 {
     char targetName[20];
     printf("Name:");
@@ -170,11 +170,11 @@ employee searchByName(employee *workers, int count)
             return *(workers + i);
         }
     }
-    employee notFound = {-1, "notFound", 0};
+    Employee notFound = {-1, "notFound", 0};
     return notFound;
 }
 
-void showAllWorkers(employee *workers, int count)
+void showAllWorkers(Employee *workers, int count)
 {
     printf("All workers in list:\n");
     for (int i = 0; i < count; i++)
