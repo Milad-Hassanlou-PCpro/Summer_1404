@@ -3,19 +3,27 @@
 
 int main() {
     initscr();
-    printw("Hello");
     int row, column;
     getmaxyx(stdscr,row,column);
-    //printw("Rows:%d,Columns:%d",row,column);
-    //refresh();
-    move((row/2),((79-1)/2));
-    printw("*");
+    start_color();
+    init_pair(1,COLOR_BLUE,COLOR_RED);
+    init_pair(2,COLOR_BLACK,COLOR_YELLOW);
+    printw("Hello");
+    refresh();
+
+    attron(COLOR_PAIR(1));
+    move((row/2),((79-15)/2));
+    printw("How are you?");
     refresh();
     sleep(2);
-    move(5,15);
-    printw("222222222222 Ncurses from windows!");
+    move(5,25);
+    printw("Ha! ha! ha! Don't worry.");
     refresh();
-    getch();
+    attroff(COLOR_PAIR(1));
+    attron( COLOR_PAIR(2));
+    move(6,35);
+    scanw("%s",NULL);
+    attroff(COLOR_PAIR(2));
     sleep(1);
     endwin();
     return 0;
