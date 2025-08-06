@@ -2,13 +2,21 @@
 #include <unistd.h>
 
 int main() {
-    printf("Hello\n");
-    sleep(2);
     initscr();
-    printw("Hello From Ncurses from windows!");
+    printw("Hello");
+    int row, column;
+    getmaxyx(stdscr,row,column);
+    //printw("Rows:%d,Columns:%d",row,column);
+    //refresh();
+    move((row/2),((79-1)/2));
+    printw("*");
+    refresh();
+    sleep(2);
+    move(5,15);
+    printw("222222222222 Ncurses from windows!");
     refresh();
     getch();
+    sleep(1);
     endwin();
-    printf("Goodbye\n");
     return 0;
 }
