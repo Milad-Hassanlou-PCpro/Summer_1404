@@ -28,12 +28,12 @@ int main()
     //
     move(7,44);
     refresh();
-    sleep(10);
-    for(int i=0;i<=24;i++){
-    delch();
+    sleep(3);
+    //
+    deleteln();
+    //
     refresh();
-    sleep(1);
-    }
+    sleep(3);
     printw("*");
     refresh();
     sleep(1);
