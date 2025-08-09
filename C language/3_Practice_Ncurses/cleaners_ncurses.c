@@ -16,6 +16,9 @@ int main()
     mvprintw(7, 30, "text cleaners.");
     refresh();
     sleep(1);
+    printw("(It's not really hard!):");
+    refresh();
+    sleep(1);
     mvprintw(10, 40, "thanks.");
     refresh();
     sleep(1);
@@ -23,8 +26,12 @@ int main()
     refresh();
     sleep(2);
     //
-    //clear();
-    erase();
+    move(7,44);
+    //clrtobot();
+    clrtoeol();
+    printw("*");
+    refresh();
+    sleep(1);
     //
     printw("I'm back.");
     refresh();
