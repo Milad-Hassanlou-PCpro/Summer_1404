@@ -27,8 +27,13 @@ int main()
     sleep(2);
     //
     move(7,44);
-    //clrtobot();
-    clrtoeol();
+    refresh();
+    sleep(10);
+    for(int i=0;i<=24;i++){
+    delch();
+    refresh();
+    sleep(1);
+    }
     printw("*");
     refresh();
     sleep(1);
