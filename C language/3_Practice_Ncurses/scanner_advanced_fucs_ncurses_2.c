@@ -3,7 +3,7 @@
 int main()
 {
     initscr();
-    keypad(stdscr, FALSE); //True
+    nodelay(stdscr, TRUE);
     char ch1;
     char ch2;
     char ch3;
@@ -11,6 +11,9 @@ int main()
     printw("\nInput a char 1 : ");
     refresh();
     ch1 = getch();
+    //
+    sleep(2);
+    //
     printw("\nInput a char 2 : ");
     refresh();
     ch2 = getch();
