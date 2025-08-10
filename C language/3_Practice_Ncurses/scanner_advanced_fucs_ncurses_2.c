@@ -23,6 +23,11 @@ int main()
     printw("\nInput a char 4 : ");
     refresh();
     ch4 = getch();
+    if(ch1=ERR)
+    {
+        printw("Error ch1!\n");
+        refresh();
+    }
     sleep(2);
     printw("\nch1:%c, ch2:%c, ch3:%c, ch4:%c", ch1, ch2, ch3, ch4);
     refresh();
