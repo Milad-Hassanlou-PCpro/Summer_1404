@@ -5,7 +5,7 @@ int main()
 {
     initscr();
 
-    nocbreak();
+    noecho();
     printw("put a string! 1 :");
     refresh();
     char str1[20];
